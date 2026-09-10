@@ -1,0 +1,10 @@
+document.getElementById('year').textContent = new Date().getFullYear();
+const menu=document.querySelector('.menu'),nav=document.querySelector('nav');
+menu?.addEventListener('click',()=>{const open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',open)});
+nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu?.setAttribute('aria-expanded','false')}));
+const form=document.getElementById('newHereForm');
+form?.addEventListener('submit',e=>{e.preventDefault();const d=new FormData(form);const msg=['🙏 JESUS KNOCKS MINISTRIES – NEW HERE / PRAYER REQUEST','',`Name: ${d.get('name')||''}`,`Phone: ${d.get('phone')||''}`,`Birthday & Month: ${d.get('birthday')||''}`,`State: ${d.get('state')||''}`,`Country: ${d.get('country')||''}`,'','Prayer Request:',d.get('prayer')||''].join('\n');window.open('https://wa.me/919912351217?text='+encodeURIComponent(msg),'_blank','noopener');});
+const lightbox=document.getElementById('lightbox');const lbImg=lightbox?.querySelector('img');
+document.querySelectorAll('.gallery-item').forEach(a=>a.addEventListener('click',e=>{e.preventDefault();if(!lightbox||!lbImg)return;lbImg.src=a.href;lightbox.classList.add('open');lightbox.setAttribute('aria-hidden','false')}));
+lightbox?.addEventListener('click',e=>{if(e.target===lightbox||e.target.tagName==='BUTTON'){lightbox.classList.remove('open');lightbox.setAttribute('aria-hidden','true');lbImg.src=''}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lightbox?.classList.remove('open')});
